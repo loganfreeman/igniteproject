@@ -1,12 +1,12 @@
 import React from 'react'
 import { BackHandler, Platform } from 'react-native'
-import { addNavigationHelpers } from 'react-navigation'
+import { addNavigationHelpers, NavigationActions } from 'react-navigation'
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
 import AppNavigation from './AppNavigation'
 
 class ReduxNavigation extends React.Component {
-  componentWillMount () {
+  componentDidMount () {
     if (Platform.OS === 'ios') return
     BackHandler.addEventListener('hardwareBackPress', () => {
       const { dispatch, nav } = this.props
@@ -15,7 +15,8 @@ class ReduxNavigation extends React.Component {
         return false
       }
       // if (shouldCloseApp(nav)) return false
-      dispatch({ type: 'Navigation/BACK' })
+      // dispatch({ type: 'Navigation/BACK' })
+      dispatch(NavigationActions.back())
       return true
     })
   }
