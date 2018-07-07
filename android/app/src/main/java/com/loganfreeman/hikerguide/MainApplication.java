@@ -1,4 +1,4 @@
-package com.igniteproject;
+package com.loganfreeman.hikerguide;
 
 import android.app.Application;
 
