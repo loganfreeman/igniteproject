@@ -26,3 +26,17 @@ allprojects {
         google() // Google's Maven repository
     }
 }
+
+/**
+ + Project-wide Gradle configuration properties
+ */
+ext {
+    compileSdkVersion   = 26
+    targetSdkVersion    = 26
+    minSdkVersion       = 22
+    buildToolsVersion   = "26.0.2"
+    supportLibVersion   = "26.1.0"
+    googlePlayServicesVersion = "11.8.0"
+    androidMapsUtilsVersion = "0.5+"
+    firebaseVersion     = "16.0.0"
+}
