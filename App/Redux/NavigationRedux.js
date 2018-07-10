@@ -1,6 +1,11 @@
+import { NavigationActions } from 'react-navigation'
+
 import AppNavigation from '../Navigation/AppNavigation'
 
-export const reducer = (state, action) => {
-  const newState = AppNavigation.router.getStateForAction(action, state)
-  return newState || state
+
+const initialAction = { type: NavigationActions.Init }
+const initialState = Navigator.router.getStateForAction(initialAction)
+
+export const reducer = (state = initialState, action) => {
+  return AppNavigation.router.getStateForAction(action, state)
 }
