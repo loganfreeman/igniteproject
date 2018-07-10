@@ -5,8 +5,26 @@ import { Images } from '../Themes'
 // Styles
 import styles from './Styles/LaunchScreenStyles'
 
+import MainScreen from './MainScreen'
 export default class LaunchScreen extends Component {
-  render () {
+
+  constructor(props) {
+    super(props);
+    this.state = { isLoggedIn: false };
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        isLoggedIn: true
+      })
+    }, 500)
+  }
+
+  render() {
+    if (this.state.isLoggedIn) {
+      return <MainScreen />
+    }
     return (
       <View style={styles.mainContainer}>
         <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
