@@ -4,13 +4,13 @@ import NCAP from '../Lib/NCAP'
 
 export function* fetchModelYears() {
   const response = yield call(NCAP.getModelYears)
-  const data = response.json()
+  const {data} = response
   yield put(CarActions.setModelYears(data))
 }
 
 export function* fetchMakes({modelYear}) {
   const response = yield call(NCAP.getMakes, modelYear)
-  const data = response.json()
+  const {data} = response
   yield put(CarActions.setModelYear(modelYear, data))
 }
 
@@ -18,7 +18,7 @@ export function* fetchMakes({modelYear}) {
 export function* fetchModels({make}) {
   const makeName = make.Make;
   const response = yield call(NCAP.getModels, make.ModelYear, makeName)
-  const data = response.json()
+  const {data} = response
   yield put(CarActions.setMake(makeName, data))
 }
 
@@ -26,14 +26,14 @@ export function* fetchModels({make}) {
 export function* fetchVehicles({model}) {
   const modelName = model.Model;
   const response = yield call(NCAP.getVehicles, model.ModelYear, model.Make, modelName)
-  const data = response.json()
+  const {data} = response
   yield put(CarActions.setModel(modelName, data))
 }
 
 export function* fetchVehicleDetails({vehicle}) {
   const modelName = model.Model;
   const response = yield call(NCAP.getVehicle, vehicle.VehicleId)
-  const data = response.json()
+  const {data} = response
   yield put(CarActions.setVehicle(vehicle.VehicleDescription, data))
 }
 
