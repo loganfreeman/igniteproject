@@ -22,6 +22,8 @@ import {
   fetchVehicleDetails
 } from "./CarSagas";
 
+import {toUnderscore} from '../Lib/utils'
+
 /* ------------- API ------------- */
 
 // The API we use is only used from Sagas, so we create it here and pass along
@@ -38,11 +40,11 @@ export default function* root() {
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
 
-    takeLatest(CarTypes.fetchModelYears, fetchModelYears),
+    takeLatest(CarTypes[toUnderscore('fetchModelYears')], fetchModelYears),
 
-    takeLatest(CarTypes.fetchMakes, fetchMakes),
-    takeLatest(CarTypes.fetchModels, fetchModels),
-    takeLatest(CarTypes.fetchVehicles, fetchVehicles),
-    takeLatest(CarTypes.fetchVehicleDetails, fetchVehicleDetails),
+    takeLatest(CarTypes[toUnderscore('fetchMakes')], fetchMakes),
+    takeLatest(CarTypes[toUnderscore('fetchModels')], fetchModels),
+    takeLatest(CarTypes[toUnderscore('fetchVehicles')], fetchVehicles),
+    takeLatest(CarTypes[toUnderscore('fetchVehicleDetails')], fetchVehicleDetails),
   ]);
 }

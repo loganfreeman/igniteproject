@@ -3,6 +3,18 @@ import LaunchScreen from '../Containers/LaunchScreen'
 
 import styles from './Styles/NavigationStyles'
 
+import Routes from '../Cars/config/routes'
+const AppNavigator = StackNavigator(Routes, {
+  navigationOptions: {
+      title: ({ state }) => {
+          if (state.params) {
+              return `${state.params.title}`;
+          }
+      }
+  }
+});
+
+
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
   LaunchScreen: { screen: LaunchScreen }
@@ -15,4 +27,4 @@ const PrimaryNav = StackNavigator({
   }
 })
 
-export default PrimaryNav
+export default AppNavigator

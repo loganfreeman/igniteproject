@@ -32,34 +32,34 @@ export const INITIAL_STATE = Immutable({});
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types[toUnderscore("setModelYears")]]: (state, { modelYears }) => {
-    state.merge({
+    return state.merge({
       modelYears
     });
   },
 
   [Types[toUnderscore("setModelYear")]]: (state, { modelYear, makes }) => {
-    state.merge({
+    return state.merge({
       modelYear,
       makes
     });
   },
 
   [Types[toUnderscore("setMake")]]: (state, { make, models }) => {
-    state.merge({
+    return state.merge({
       make,
       models
     });
   },
 
   [Types[toUnderscore("setModel")]]: (state, { model,  vehicles}) => {
-    state.merge({
+    return state.merge({
       vehicles,
       model
     });
   },
 
   [Types[toUnderscore("setVehicle")]]: (state, { vehicle, vehicleDetails }) => {
-    state.merge({
+    return state.merge({
       vehicleDetails,
       vehicle
     });
