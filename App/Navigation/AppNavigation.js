@@ -5,9 +5,11 @@ import styles from './Styles/NavigationStyles'
 
 import Routes from '../Cars/config/routes'
 const AppNavigator = StackNavigator(Routes, {
-  navigationOptions: ({ navigation }) => ({
-    title: `${navigation.state.params.title}`,
-  }),
+  navigationOptions: ({ navigation }) => {
+    return {
+      title: navigation.state.params && `${navigation.state.params.title}`,
+    }
+  },
 })
 
 // Manifest of possible screens

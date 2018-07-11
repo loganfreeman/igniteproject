@@ -21,6 +21,7 @@ class BaseList extends Component {
     this.initDataSource(this.getListData())
   }
   initDataSource(rows) {
+    if (!rows) return
     var dataSource = new ListView.DataSource({
       rowHasChanged: (row1, row2) => row1 !== row2,
     }).cloneWithRows(rows)

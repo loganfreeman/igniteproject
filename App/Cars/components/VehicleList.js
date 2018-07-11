@@ -29,8 +29,8 @@ class VehicleList extends BaseList {
   onVehiclePress = vehicle => {
     const navigate = this.props.navigation.navigate
     const { setVehicle } = this.props
-    NCAP.getVehicle(vehicle, vehicle.VehicleId)
-      .tne(({ data }) => {
+    NCAP.getVehicle(vehicle.VehicleId)
+      .then(({ data }) => {
         setVehicle(vehicle.VehicleDescription, data)
       })
       .then(() =>
