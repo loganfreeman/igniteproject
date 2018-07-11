@@ -1,46 +1,51 @@
 /**
  * Created by stan229 on 5/28/16.
  */
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 import {
-    View,
-    Text,
-    TouchableOpacity,
-    ListView,
-    StyleSheet
-} from 'react-native';
+  View,
+  Text,
+  TouchableOpacity,
+  ListView,
+  StyleSheet,
+} from 'react-native'
 
 class BaseList extends Component {
-    componentDidMount() {
-        this.initDataSource(this.getListData());
-    }
-    initDataSource(rows) {
-        var dataSource = new ListView.DataSource({
-            rowHasChanged : (row1, row2) => row1 !== row2,
-        }).cloneWithRows(rows);
+  state = {
+    dataSource: new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    }).cloneWithRows([]),
+  }
+  componentDidMount() {
+    this.initDataSource(this.getListData())
+  }
+  initDataSource(rows) {
+    var dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    }).cloneWithRows(rows)
 
-        this.setState({
-            dataSource : dataSource,
-            loading    : false
-        });
-    }
+    this.setState({
+      dataSource: dataSource,
+      loading: false,
+    })
+  }
 
-    render() {
-        return (
-            <ListView style={styles.container}
-                      dataSource={this.state.dataSource}
-                      renderRow={this.renderRow}
-            />
-        );
-    }
+  render() {
+    return (
+      <ListView
+        style={styles.container}
+        dataSource={this.state.dataSource}
+        renderRow={this.renderRow}
+      />
+    )
+  }
 }
 
-
 var styles = StyleSheet.create({
-    container : {
-        flex      : 1
-    }
-});
+  container: {
+    flex: 1,
+  },
+})
 
-export default BaseList;
+export default BaseList
