@@ -2,55 +2,57 @@
  * Created by stan229 on 5/27/16.
  */
 
-import React, { Component } from "react";
+import React, { Component } from 'react'
 
 import {
   View,
   Text,
   TouchableOpacity,
   ListView,
-  StyleSheet
-} from "react-native";
+  StyleSheet,
+} from 'react-native'
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-import carsActions from "../../Redux/CarRedux";
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import carsActions from '../../Redux/CarRedux'
+
+import NCAP from '../../Lib/NCAP'
 
 class ModelYearList extends Component {
   static navigationOptions = {
-    title: "Model Years"
-  };
+    title: 'Model Years',
+  }
 
   state = {
     dataSource: new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
-    }).cloneWithRows([])
-  };
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    }).cloneWithRows([]),
+  }
 
   componentDidMount() {
     this.setState({
-      loading: true
-    });
+      loading: true,
+    })
 
-    this.props.fetchModelYears();
+    this.props.fetchModelYears()
   }
 
   componentWillReceiveProps(nextProps) {
-    const { modelYears } = this.props;
+    const { modelYears } = this.props
     if (modelYears !== nextProps.modelYears) {
-      this.initDataSource(nextProps.modelYears.Results);
+      this.initDataSource(nextProps.modelYears.Results)
     }
   }
 
   initDataSource(rows) {
     var dataSource = new ListView.DataSource({
-      rowHasChanged: (row1, row2) => row1 !== row2
-    }).cloneWithRows(rows);
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    }).cloneWithRows(rows)
 
     this.setState({
       dataSource: dataSource,
-      loading: false
-    });
+      loading: false,
+    })
   }
 
   renderRow = modelYear => {
@@ -62,25 +64,28 @@ class ModelYearList extends Component {
           <Text>{modelYear.ModelYear}</Text>
         </View>
       </TouchableOpacity>
-    );
-  };
+    )
+  }
 
   onModelYearPress = modelYear => {
-    const navigate = this.props.navigation.navigate;
-    this.props
-      .fetchMakes(modelYear)
-      .then(() => navigate("Makes", { title: modelYear }));
-  };
+    const navigate = this.props.navigation.navigate
+    const { setModelYear } = this.props
+    NCAP.getMakes(modelYear)
+      .then(({ data }) => {
+        setModelYear(modelYear, data)
+      })
+      .then(() => navigate('Makes', { title: modelYear }))
+  }
 
   render() {
-    const state = this.state;
+    const state = this.state
 
     if (state.loading) {
       return (
         <View style={styles.container}>
           <Text>Loading</Text>
         </View>
-      );
+      )
     }
 
     return (
@@ -89,19 +94,19 @@ class ModelYearList extends Component {
         dataSource={state.dataSource}
         renderRow={this.renderRow}
       />
-    );
+    )
   }
 }
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
-});
+    flex: 1,
+  },
+})
 
 export default connect(
   state => ({
-    modelYears: state.cars.modelYears
+    modelYears: state.cars.modelYears,
   }),
   dispatch => bindActionCreators(carsActions, dispatch)
-)(ModelYearList);
+)(ModelYearList)
