@@ -39,7 +39,13 @@ export default (rootReducer, rootSaga) => {
   const createAppropriateStore = Config.useReactotron
     ? console.tron.createStore
     : createStore
-  const store = createAppropriateStore(rootReducer, compose(...enhancers))
+  // eslint-disable-next-line no-underscore-dangle
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  const store = createAppropriateStore(
+    rootReducer,
+    composeEnhancers(...enhancers)
+  )
 
   // configure persistStore and check reducer version number
   if (ReduxPersist.active) {

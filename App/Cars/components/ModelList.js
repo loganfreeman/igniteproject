@@ -30,7 +30,7 @@ class ModelList extends BaseList {
     const navigate = this.props.navigation.navigate
     const modelName = model.Model
     const { setModel } = this.props
-    NCAP.getVehicles(model)
+    NCAP.getVehicles(model.ModelYear, model.Make, modelName)
       .then(({ data }) => {
         setModel(modelName, data)
       })
