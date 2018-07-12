@@ -3,7 +3,7 @@ import React from 'react'
 import LaunchScreen from '../Containers/LaunchScreen'
 import { ScrollView, Text, StyleSheet, Button } from 'react-native'
 import { connect } from 'react-redux'
-import { StackNavigator, TabNavigator } from 'react-navigation'
+import { createStackNavigator, createTabNavigator } from 'react-navigation'
 
 import styles from './Styles/NavigationStyles'
 
@@ -28,7 +28,7 @@ const createComponent = (name, navigateTo = []) => {
 }
 
 // The nested StackNavigator
-const NestedNavigator = StackNavigator(
+const NestedNavigator = createStackNavigator(
   {
     StackOne: { screen: createComponent('StackOne', ['StackTwo']) },
     StackTwo: { screen: createComponent('StackTwo', ['StackOne']) },
@@ -38,7 +38,7 @@ const NestedNavigator = StackNavigator(
   }
 )
 
-const AppNavigator = StackNavigator(Routes, {
+const AppNavigator = createStackNavigator(Routes, {
   navigationOptions: ({ navigation }) => {
     return {
       title: navigation.state.params && `${navigation.state.params.title}`,
@@ -47,14 +47,14 @@ const AppNavigator = StackNavigator(Routes, {
 })
 
 // Two tabs, second one is a nested StackNavigator
-export const MainNavigator = TabNavigator({
+export const MainNavigator = createTabNavigator({
   Cars: {
     screen: AppNavigator,
   },
 })
 
 // Manifest of possible screens
-const PrimaryNav = StackNavigator(
+const PrimaryNav = createStackNavigator(
   {
     LaunchScreen: { screen: LaunchScreen },
   },

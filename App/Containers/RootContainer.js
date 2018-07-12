@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
+import { reduxifyNavigator } from 'react-navigation-redux-helpers'
 import ReduxNavigation from '../Navigation/ReduxNavigation'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -11,7 +12,7 @@ import ReduxPersist from '../Config/ReduxPersist'
 import styles from './Styles/RootContainerStyles'
 
 class RootContainer extends Component {
-  componentDidMount () {
+  componentDidMount() {
     const { startup } = this.props.actions
     // if redux persist is not active fire startup action
     if (!ReduxPersist.active) {
@@ -19,16 +20,15 @@ class RootContainer extends Component {
     }
   }
 
-  render () {
+  render() {
     return (
       <View style={styles.applicationView}>
-        <StatusBar barStyle='light-content' />
+        <StatusBar barStyle="light-content" />
         <ReduxNavigation />
       </View>
     )
   }
 }
-
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators(
@@ -39,4 +39,7 @@ const mapDispatchToProps = dispatch => ({
   ),
 })
 
-export default connect(null, mapDispatchToProps)(RootContainer)
+export default connect(
+  null,
+  mapDispatchToProps
+)(RootContainer)
