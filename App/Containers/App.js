@@ -8,27 +8,17 @@ import createStore from '../Redux'
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
 import StartupActions from '../Redux/StartupRedux'
+import AppNavition from '../Navigation/AppNavigation'
 // create our store
 const store = createStore()
 
-const AppNavigator = reduxifyNavigator(RootContainer, 'root')
-
+const AppNavigator = reduxifyNavigator(AppNavition, 'root')
 const mapStateToProps = state => ({
   state: state.nav,
 })
-
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    {
-      ...StartupActions,
-    },
-    dispatch
-  ),
-})
-
 const AppWithNavigationState = connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(AppNavigator)
 
 /**

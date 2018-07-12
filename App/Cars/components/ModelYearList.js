@@ -27,13 +27,15 @@ class ModelYearList extends Component {
     if (nextProps.modelYears) {
       const dataSource = new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
-      }).cloneWithRows(rows)
+      }).cloneWithRows(nextProps.modelYears.Results)
 
       return {
         ...prevState,
         dataSource,
+        loading: false,
       }
     }
+    return prevState
   }
 
   state = {

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import LaunchScreen from '../Containers/LaunchScreen'
-import { ScrollView, Text, StyleSheet, Button } from 'react-native'
+import { ScrollView, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { createStackNavigator, createTabNavigator } from 'react-navigation'
 
@@ -68,4 +68,4 @@ const PrimaryNav = createStackNavigator(
   }
 )
 
-export default MainNavigator
+export default AppNavigator
