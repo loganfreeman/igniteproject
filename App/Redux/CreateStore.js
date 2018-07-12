@@ -7,7 +7,7 @@ import ScreenTracking from './ScreenTrackingMiddleware'
 import { createReactNavigationReduxMiddleware } from 'react-navigation-redux-helpers'
 
 // creates the store
-export default (rootReducer, rootSaga, navigationMiddleware) => {
+export default (rootReducer, rootSaga) => {
   /* ------------- Redux Configuration ------------- */
 
   const middleware = []

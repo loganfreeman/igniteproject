@@ -7,7 +7,7 @@ import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
-
+import StartupActions from '../Redux/StartupRedux'
 // create our store
 const store = createStore()
 
@@ -44,7 +44,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppNavigator />
+        <AppWithNavigationState />
       </Provider>
     )
   }
