@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { View, StatusBar } from 'react-native'
 import { reduxifyNavigator } from 'react-navigation-redux-helpers'
 import ReduxNavigation from '../Navigation/ReduxNavigation'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 import StartupActions from '../Redux/StartupRedux'
 import ReduxPersist from '../Config/ReduxPersist'
@@ -30,16 +28,4 @@ class RootContainer extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  actions: bindActionCreators(
-    {
-      ...StartupActions,
-    },
-    dispatch
-  ),
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(RootContainer)
+export default RootContainer

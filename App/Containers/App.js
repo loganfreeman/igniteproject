@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
+import { reduxifyNavigator } from 'react-navigation-redux-helpers'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import '../Config'
@@ -7,6 +10,26 @@ import DebugConfig from '../Config/DebugConfig'
 
 // create our store
 const store = createStore()
+
+const AppNavigator = reduxifyNavigator(RootContainer, 'root')
+
+const mapStateToProps = state => ({
+  state: state.nav,
+})
+
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(
+    {
+      ...StartupActions,
+    },
+    dispatch
+  ),
+})
+
+const AppWithNavigationState = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AppNavigator)
 
 /**
  * Provides an entry point into our application.  Both index.ios.js and index.android.js
@@ -21,7 +44,7 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <RootContainer />
+        <AppNavigator />
       </Provider>
     )
   }
