@@ -9,6 +9,10 @@ import styles from './Styles/NavigationStyles'
 
 import Routes from '../Cars/config/routes'
 
+import LoginScreen from '../Auth/components/LoginScreen'
+import MainScreen from '../Auth/components/MainScreen'
+import ProfileScreen from '../Auth/components/ProfileScreen'
+
 // This function is used to create components.
 // It expects a name and a list of optional links to other routes.
 // The generated component is connected to Redux to display the content of the store.
@@ -68,4 +72,10 @@ const PrimaryNav = createStackNavigator(
   }
 )
 
-export default AppNavigator
+const RootNavigator = createStackNavigator({
+  Login: { screen: LoginScreen },
+  Main: { screen: MainScreen },
+  Profile: { screen: ProfileScreen },
+})
+
+export default RootNavigator
