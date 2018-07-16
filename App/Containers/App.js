@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { reduxifyNavigator } from 'react-navigation-redux-helpers'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import RootContainer from './RootContainer'
 import createStore from '../Redux'
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
-import StartupActions from '../Redux/StartupRedux'
 import AppNavition from '../Navigation/AppNavigation'
 // create our store
 const store = createStore()
