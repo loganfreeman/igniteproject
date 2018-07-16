@@ -5,18 +5,17 @@ import { connect } from 'react-redux'
 import createStore from '../Redux'
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
-import AppNavition from '../Navigation/AppNavigation'
+import AppWithNavigator from '../Navigation/AppNavigation'
 // create our store
 const store = createStore()
 
-const AppNavigator = reduxifyNavigator(AppNavition, 'root')
 const mapStateToProps = state => ({
   state: state.nav,
 })
 const AppWithNavigationState = connect(
   mapStateToProps,
   null
-)(AppNavigator)
+)(reduxifyNavigator(AppWithNavigator, 'root'))
 
 /**
  * Provides an entry point into our application.  Both index.ios.js and index.android.js
