@@ -1,8 +1,8 @@
 import { createNavigationReducer } from 'react-navigation-redux-helpers'
 import { NavigationActions } from 'react-navigation'
 
-import AppNavigation from '../Navigation/AppNavigation'
-
+// import AppNavigation from '../Navigation/AppNavigation'
+import AppNavigation from '../Register/navigator'
 // export const reducer = createNavigationReducer(AppNavigation)
 export const reducer = (state, action) => {
   let nextState

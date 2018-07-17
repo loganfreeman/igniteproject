@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import createStore from '../Redux'
 import '../Config'
 import DebugConfig from '../Config/DebugConfig'
-import AppWithNavigator from '../Navigation/AppNavigation'
+import AppWithNavigator from '../Register/navigator'
 // create our store
 const store = createStore()
 
