@@ -24,7 +24,6 @@ export default class Login extends Component {
       backgroundColor: '#16a085',
       elevation: null,
     },
-    header: null,
   }
   async onLoginPress() {
     const { email, password } = this.state

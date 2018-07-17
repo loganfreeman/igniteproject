@@ -15,38 +15,45 @@ import Home from './components/Home'
 
 import { createStackNavigator } from 'react-navigation'
 
-export default (App = createStackNavigator({
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      title: 'Home',
+const navigatorOptions = {}
+
+const App = createStackNavigator(
+  {
+    Home: {
+      screen: Home,
+      navigationOptions: {
+        title: 'Home',
+      },
+    },
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        title: 'Login',
+      },
+    },
+    Register: {
+      screen: Register,
+      navigationOptions: {
+        title: 'Register',
+      },
+    },
+    ForgetPassword: {
+      screen: ForgetPassword,
+      navigationOptions: {
+        title: 'ForgetPassword',
+      },
+    },
+    Boiler: {
+      screen: Boiler,
+      navigationOptions: {
+        title: 'Boiler',
+      },
     },
   },
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      title: 'Login',
-    },
-  },
-  Register: {
-    screen: Register,
-    navigationOptions: {
-      title: 'Register',
-    },
-  },
-  ForgetPassword: {
-    screen: ForgetPassword,
-    navigationOptions: {
-      title: 'ForgetPassword',
-    },
-  },
-  Boiler: {
-    screen: Boiler,
-    navigationOptions: {
-      title: 'Boiler',
-    },
-  },
-}))
+  navigatorOptions
+)
+
+export default App
 
 const styles = StyleSheet.create({
   container: {
