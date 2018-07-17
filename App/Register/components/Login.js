@@ -11,6 +11,8 @@ import {
   View, // Container component
 } from 'react-native'
 
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 export default class Login extends Component {
   constructor() {
     super()
@@ -36,41 +38,43 @@ export default class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View behavior="padding" style={styles.container}>
-          <View style={styles.logoContainer}>
-            <Image style={styles.logo} source={require('./banana.png')} />
-            <Text style={styles.subtext}>Humdum</Text>
-          </View>
-          <KeyboardAvoidingView style={styles.keyboard}>
-            <TextInput
-              placeholder="Username"
-              placeholderTextColor="rgba(255,255,255,0.7)"
-              returnKeyType="next"
-              onSubmitEditing={() => this.passwordInput.focus()}
-              keyboardType="email-address"
-              autoCapitalize="none"
-              autoCorrect={false}
-              value={this.state.email}
-              onChangeText={email => this.setState({ email })}
-            />
-            <TextInput
-              placeholder="Password"
-              placeholderTextColor="rgba(255,255,255,0.7)"
-              returnKeyType="go"
-              secureTextEntry
-              ref={input => (this.passwordInput = input)}
-              value={this.state.password}
-              onChangeText={password => this.setState({ password })}
-            />
+        <KeyboardAwareScrollView>
+          <View behavior="padding" style={styles.container}>
+            <View style={styles.logoContainer}>
+              <Image style={styles.logo} source={require('./banana.png')} />
+              <Text style={styles.subtext}>Humdum</Text>
+            </View>
+            <View style={styles.keyboard}>
+              <TextInput
+                placeholder="Username"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                returnKeyType="next"
+                onSubmitEditing={() => this.passwordInput.focus()}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                value={this.state.email}
+                onChangeText={email => this.setState({ email })}
+              />
+              <TextInput
+                placeholder="Password"
+                placeholderTextColor="rgba(255,255,255,0.7)"
+                returnKeyType="go"
+                secureTextEntry
+                ref={input => (this.passwordInput = input)}
+                value={this.state.password}
+                onChangeText={password => this.setState({ password })}
+              />
 
-            <TouchableOpacity
-              style={styles.buttonContainer}
-              onPress={this.onLoginPress.bind(this)}
-            >
-              <Text style={styles.buttonText}>LOGIN</Text>
-            </TouchableOpacity>
-          </KeyboardAvoidingView>
-        </View>
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={this.onLoginPress.bind(this)}
+              >
+                <Text style={styles.buttonText}>LOGIN</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </KeyboardAwareScrollView>
         <TouchableOpacity style={styles.button}>
           <Text
             style={styles.buttonText}

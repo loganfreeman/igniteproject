@@ -25,7 +25,7 @@ export default class ForgetPassword extends Component {
   }
 
   onForgetPress() {
-    this.props.navigation.navigate('Login')
+    this.props.navigation.navigate('Home')
   }
   render() {
     return (
